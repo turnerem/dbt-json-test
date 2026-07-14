@@ -4,6 +4,7 @@ profile: 'default'
 
 models:
   jsontest:
-    +meta:
-      owner: analytics-team
-      channel: "#data-alerts"
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
