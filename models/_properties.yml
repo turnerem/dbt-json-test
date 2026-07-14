@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: example
+    description: "Example model for testing dbt JSON log parsing"
+    config:
+      meta:
+        owner: "analytics-team"
+        channel: "#data-alerts"
+        team_owner: "analytics-team"

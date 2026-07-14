@@ -1,3 +1,9 @@
 name: 'jsontest'
 version: '1.0.0'
 profile: 'default'
+
+models:
+  jsontest:
+    +meta:
+      owner: analytics-team
+      channel: "#data-alerts"
