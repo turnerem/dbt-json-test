@@ -28,3 +28,53 @@ models:
     description: "Intentionally broken model referencing a missing column"
     config:
       meta: {owner: data-platform, channel: "#data-platform-alerts", team_owner: data-platform}
+
+  - name: stg_customers
+    description: "Cleaned customers with enterprise flag"
+    config:
+      meta: {owner: analytics-team, channel: "#analytics-alerts"}
+
+  - name: int_orders_joined
+    description: "Orders enriched with customer attributes"
+    config:
+      meta: {owner: analytics-team, channel: "#analytics-alerts"}
+
+  - name: int_completed_orders
+    description: "Only completed orders"
+    config:
+      meta: {owner: analytics-team, channel: "#analytics-alerts"}
+
+  - name: mart_order_status_summary
+    description: "Order counts and totals by status"
+    config:
+      meta: {owner: ops-team, channel: "#ops-alerts"}
+
+  - name: mart_segment_revenue
+    description: "Revenue rolled up by customer segment"
+    config:
+      meta: {owner: finance-team, channel: "#finance-alerts"}
+
+  - name: mart_customer_ltv
+    description: "Lifetime value per customer"
+    config:
+      meta: {owner: finance-team, channel: "#finance-alerts"}
+
+  - name: mart_returned_orders
+    description: "Orders with returned status"
+    config:
+      meta: {owner: ops-team, channel: "#ops-alerts"}
+
+  - name: mart_top_customers
+    description: "Customers ranked by total spend"
+    config:
+      meta: {owner: sales-team, channel: "#sales-alerts"}
+
+  - name: mart_avg_order_by_segment
+    description: "Average order value by segment"
+    config:
+      meta: {owner: finance-team, channel: "#finance-alerts"}
+
+  - name: mart_enterprise_orders
+    description: "Orders from enterprise customers"
+    config:
+      meta: {owner: sales-team, channel: "#sales-alerts"}
