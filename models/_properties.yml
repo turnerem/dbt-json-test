@@ -15,6 +15,9 @@ models:
     description: "Staged orders with completion flag"
     config:
       meta: {owner: analytics-team, channel: "#analytics-alerts"}
+    columns:
+      - name: order_id
+        data_tests: [not_null]
 
   - name: customer_orders
     description: "Customer order rollup"
@@ -22,7 +25,7 @@ models:
       meta: {owner: analytics-team, channel: "#analytics-alerts", team_owner: analytics-team}
     columns:
       - name: customer_id
-        data_tests: [not_null]
+        data_tests: [not_null, unique]
 
   - name: broken_orders
     description: "Intentionally broken model referencing a missing column"
