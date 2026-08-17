@@ -4,17 +4,17 @@ models:
   - name: raw_orders
     description: "Raw orders seed data"
     config:
-      meta: {owner: ingestion-team, channel: "#ingestion-alerts"}
+      meta: {channel: "#alert-testing"}
 
   - name: raw_customers
     description: "Raw customer seed data"
     config:
-      meta: {owner: ingestion-team, channel: "#ingestion-alerts"}
+      meta: {channel: "#alert-testing"}
 
   - name: stg_orders
     description: "Staged orders with completion flag"
     config:
-      meta: {owner: analytics-team, channel: "#analytics-alerts"}
+      meta: {channel: "#alert-testing"}
     columns:
       - name: order_id
         data_tests: [not_null]
@@ -22,7 +22,7 @@ models:
   - name: customer_orders
     description: "Customer order rollup"
     config:
-      meta: {owner: analytics-team, channel: "#analytics-alerts", team_owner: analytics-team}
+      meta: {channel: "#alert-testing"}
     columns:
       - name: customer_id
         data_tests: [not_null, unique]
@@ -30,54 +30,54 @@ models:
   - name: broken_orders
     description: "Intentionally broken model referencing a missing column"
     config:
-      meta: {owner: data-platform, channel: "#data-platform-alerts", team_owner: data-platform}
+      meta: {channel: "#alert-testing"}
 
   - name: stg_customers
     description: "Cleaned customers with enterprise flag"
     config:
-      meta: {owner: analytics-team, channel: "#analytics-alerts"}
+      meta: {channel: "#alert-testing"}
 
   - name: int_orders_joined
     description: "Orders enriched with customer attributes"
     config:
-      meta: {owner: analytics-team, channel: "#analytics-alerts"}
+      meta: {channel: "#alert-testing"}
 
   - name: int_completed_orders
     description: "Only completed orders"
     config:
-      meta: {owner: analytics-team, channel: "#analytics-alerts"}
+      meta: {channel: "#alert-testing"}
 
   - name: mart_order_status_summary
     description: "Order counts and totals by status"
     config:
-      meta: {owner: ops-team, channel: "#ops-alerts"}
+      meta: {channel: "#alert-testing"}
 
   - name: mart_segment_revenue
     description: "Revenue rolled up by customer segment"
     config:
-      meta: {owner: finance-team, channel: "#finance-alerts"}
+      meta: {channel: "#alert-testing"}
 
   - name: mart_customer_ltv
     description: "Lifetime value per customer"
     config:
-      meta: {owner: finance-team, channel: "#finance-alerts"}
+      meta: {channel: "#alert-testing"}
 
   - name: mart_returned_orders
     description: "Orders with returned status"
     config:
-      meta: {owner: ops-team, channel: "#ops-alerts"}
+      meta: {channel: "#alert-testing"}
 
   - name: mart_top_customers
     description: "Customers ranked by total spend"
     config:
-      meta: {owner: sales-team, channel: "#sales-alerts"}
+      meta: {channel: "#alert-testing"}
 
   - name: mart_avg_order_by_segment
     description: "Average order value by segment"
     config:
-      meta: {owner: finance-team, channel: "#finance-alerts"}
+      meta: {channel: "#alert-testing"}
 
   - name: mart_enterprise_orders
     description: "Orders from enterprise customers"
     config:
-      meta: {owner: sales-team, channel: "#sales-alerts"}
+      meta: {channel: "#alert-testing"}
