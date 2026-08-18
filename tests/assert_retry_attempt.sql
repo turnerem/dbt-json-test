@@ -1,7 +1,8 @@
-{% set required_attempts = var('retries', 2) %}
-with attempts as (
-    select count(*) as attempt_count
-    from {{ ref('retry_attempt_log') }}
-    where pipeline_run_id = '{{ env_var("ORCHESTRA_PIPELINE_RUN_ID", "local") }}'
-)
-select attempt_count from attempts where attempt_count < {{ required_attempts }}
+{% set attempt = env_var('ORCHESTRA_TASK_ATTEMPT_NUMBER', '1') | int %}
+
+-- Singular test: any returned row = failure.
+-- Fails on attempt 1, passes from attempt 2 onward.
+select
+    {{ attempt }} as attempt_number,
+    'deliberate first-attempt failure to demo retry recovery' as failure_reason
+where {{ attempt }} < 2
