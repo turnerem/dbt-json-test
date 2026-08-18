@@ -1,4 +1,4 @@
-{% set required_attempts = var('required_attempts', 2) %}
+{% set required_attempts = var('retries', 2) %}
 with attempts as (
     select count(*) as attempt_count
     from {{ ref('retry_attempt_log') }}
