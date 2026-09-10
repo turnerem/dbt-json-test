@@ -16,7 +16,7 @@ def model(dbt, session):
 
     # run_log is ref'd, so dbt builds it before this model —
     # the current run is already counted
-    ordinal = len(dbt.ref("run_log").df())
+    ordinal = dbt.ref("run_log").count("*").fetchone()[0]
 
     slot = (ordinal - 1) % len(SCHEDULE)
     multiplier = SCHEDULE[slot]
