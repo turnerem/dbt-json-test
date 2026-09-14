@@ -81,3 +81,10 @@ models:
     description: "Orders from enterprise customers"
     config:
       meta: {channel: "#alert-testing"}
+
+  - name: perf_test_model
+    description: "Sleeps for PERF_SLEEP_SECONDS to generate operation duration anomalies"
+    config:
+      meta:
+        channel: "#alert-testing"
+        orchestra_anomaly_detection: true
