@@ -1,29 +1,29 @@
+import os
 import time
 
-BASE_SECONDS = 20
+from dbt.adapters.events.logging import AdapterLogger
 
-# 20-slot cycle, 4 slow runs = exactly 1 in 5, irregularly spaced
-SCHEDULE = [
-    1.0, 1.0, 60, 1.0, 1.0,
-]
+logger = AdapterLogger("duckdb")
+
+DEFAULT_SECONDS = 20
 
 
 def model(dbt, session):
     dbt.config(materialized="table")
 
-    # run_log is ref'd, so dbt builds it before this model —
-    # the current run is already counted
-    ordinal = dbt.ref("run_log").count("*").fetchone()[0]
+    # Set PERF_SLEEP_SECONDS on the Orchestra task to make a run an outlier.
+    # Stateless on purpose: the DuckDB file is rebuilt on every run, so a
+    # counter stored in the warehouse always resets to 1.
+    seconds = float(os.environ.get("PERF_SLEEP_SECONDS", DEFAULT_SECONDS))
 
-    slot = (ordinal - 1) % len(SCHEDULE)
-    multiplier = SCHEDULE[slot]
-    seconds = BASE_SECONDS * multiplier
-
+    logger.info(f"PERF sleeping={seconds}s (PERF_SLEEP_SECONDS={os.environ.get('PERF_SLEEP_SECONDS')})")
+    started = time.time()
     time.sleep(seconds)
+    elapsed = time.time() - started
+    logger.info(f"PERF slept_actual={elapsed:.1f}s")
 
     return session.sql(f"""
         select
-            {ordinal} as run_ordinal,
-            {multiplier} as multiplier,
-            {seconds} as intended_seconds
+            {seconds} as intended_seconds,
+            {elapsed} as actual_seconds
     """)
