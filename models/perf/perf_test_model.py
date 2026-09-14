@@ -4,10 +4,7 @@ BASE_SECONDS = 20
 
 # 20-slot cycle, 4 slow runs = exactly 1 in 5, irregularly spaced
 SCHEDULE = [
-    1.0, 1.0, 4.5, 1.0, 1.0,
-    1.0, 1.0, 1.0, 1.0, 4.5,
-    4.5, 1.0, 1.0, 1.0, 1.0,
-    1.0, 1.0, 4.5, 1.0, 1.0,
+    1.0, 1.0, 60, 1.0, 1.0,
 ]
 
 
