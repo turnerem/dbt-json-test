@@ -4,6 +4,8 @@ profile: 'default'
 
 models:
   jsontest:
+    +meta:
+      orchestra_anomaly_detection: true
     staging:
       +materialized: view
     marts:
