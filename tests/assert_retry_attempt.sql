@@ -5,4 +5,4 @@
 select
     {{ attempt }} as attempt_number,
     'deliberate first-attempt failure to demo retry recovery' as failure_reason
-where {{ attempt }} < 3
+where {{ attempt }} < 2
